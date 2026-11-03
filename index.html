@@ -3,42 +3,47 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f7faef">
 <title>Math & Counting Garden</title>
 <style>
-:root{--green:#315d3b;--leaf:#d9edc6;--cream:#f7faef;--line:#dce5d5}
+:root{color-scheme:light;--green:#315d3b;--leaf:#d9edc6;--cream:#f7faef;--line:#dce5d5;--pink:#f8e5e8;--blue:#dff2fb}
 *{box-sizing:border-box}
-body{margin:0;background:var(--cream);font-family:system-ui,sans-serif;color:#294c32}
-.app{max-width:760px;margin:auto;padding:16px}
-.hero{text-align:center;background:linear-gradient(#a9e1f7 75%,#9bc76f 76%);border-radius:24px;padding:22px 12px}
-.flowers{font-size:27px}
-h1{font-size:30px;margin:8px}
-.subtitle{text-align:center;font-size:18px}
-.section{font-size:20px;font-weight:bold;margin:18px 0 10px}
-.games{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-button{font:inherit;color:var(--green);cursor:pointer;border:1.5px solid var(--line);background:white;border-radius:15px;padding:12px}
-.game{min-height:65px;font-weight:bold}
-.game span{display:block;font-size:25px}
-.active{background:var(--leaf);border-color:#70975d}
-.levels,.stats{display:flex;gap:9px;justify-content:space-between}
-.level{flex:1}
-.panel{background:white;border:1px solid var(--line);border-radius:22px;padding:18px;margin-top:18px}
-.bar{height:9px;background:#e4eadf;border-radius:99px;margin:12px 0 18px}
-.bar div{height:100%;background:#80aa64;width:0}
-.question{text-align:center;font-size:25px;font-weight:bold;margin:12px 0}
-.hint{text-align:center;color:#637966;font-size:14px}
-.objects{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:15px 0}
-.object{font-size:28px;min-height:52px;background:#f0f8e9}
-.crossed{opacity:.45;background:#f8e5e8}
+body{margin:0;background:var(--cream);font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;color:#294c32}
+.app{max-width:760px;margin:auto;min-height:100vh;padding:16px 16px 36px}
+.hero{background:linear-gradient(180deg,#a9e1f7,#d9f1fa 75%,#9bc76f 76%);border-radius:24px;padding:22px 12px 14px;text-align:center;border:1px solid #c8dfca}
+.flowers{font-size:27px;letter-spacing:5px}
+.hero h1{font-size:clamp(26px,6vw,38px);margin:7px 0;color:#315d3b}
+.hero p{margin:0;color:#527354}
+.subtitle{text-align:center;font-size:18px;margin:12px 0 22px}
+.section{font-size:20px;font-weight:800;margin:18px 0 10px}
+.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.game,.choice,.action,.level{border:1.5px solid var(--line);background:white;border-radius:17px;padding:13px 10px;font:inherit;color:#315d3b;cursor:pointer;min-height:64px}
+.game{font-size:16px;font-weight:700}
+.game span{display:block;font-size:25px;margin-bottom:4px}
+.game.active,.level.active{background:var(--leaf);border-color:#70975d;box-shadow:inset 0 0 0 1px #70975d}
+.levels{display:flex;gap:9px}
+.level{flex:1;min-height:46px}
+.panel{background:white;border:1px solid var(--line);border-radius:22px;padding:18px;margin-top:18px;box-shadow:0 5px 18px #355b3010}
+.stats{display:flex;justify-content:space-between;color:#617965;font-size:14px}
+.bar{height:9px;background:#e4eadf;border-radius:99px;overflow:hidden;margin:12px 0 18px}
+.bar>div{height:100%;background:#80aa64;width:0;transition:width .2s}
+.question{text-align:center;font-size:25px;font-weight:800;margin:8px 0 16px;color:#315d3b}
+.objects{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:14px 0}
+.object{background:#f0f8e9;border-radius:14px;min-height:54px;display:grid;place-items:center;font-size:30px;border:1px solid #dcebd2;cursor:pointer}
+.object.crossed{opacity:.45;text-decoration:line-through;background:var(--pink)}
 .choices{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
-.choice{font-size:22px;font-weight:bold}
-.action{background:var(--leaf);width:100%;margin-top:10px;font-weight:bold;min-height:48px}
-.input{width:100%;padding:14px;border:2px solid var(--line);border-radius:14px;font-size:22px;text-align:center;margin:10px 0}
-.feedback{background:#eff7e9;padding:12px;border-radius:13px;margin-top:12px}
-.hidden{display:none}
-.foot{text-align:center;color:#67816b;margin:22px}
-@media(min-width:600px){.games{grid-template-columns:repeat(3,1fr)}}
+.choice{font-size:22px;font-weight:800;min-height:55px}
+.choice:active,.action:active,.game:active{transform:scale(.98)}
+.action{background:#d9edc6;font-weight:800;width:100%;min-height:48px;margin-top:10px}
+.secondary{background:#fff}
+.feedback{margin-top:12px;padding:12px;border-radius:13px;background:#eff7e9;line-height:1.45}
+.input{width:100%;padding:14px;border:2px solid #dce5d5;border-radius:14px;font:inherit;font-size:22px;text-align:center;margin:8px 0;color:#294c32}
+.hint{font-size:14px;color:#637966;text-align:center;line-height:1.5}
+.hidden{display:none!important}
+.foot{text-align:center;color:#67816b;margin:22px 0 5px}
+.small{font-size:13px;color:#687e6b}
+@media(min-width:600px){.games{grid-template-columns:repeat(3,minmax(0,1fr))}.objects{grid-template-columns:repeat(6,1fr)}}
 </style>
 </head>
 <body>
@@ -58,92 +63,190 @@ button{font:inherit;color:var(--green);cursor:pointer;border:1.5px solid var(--l
 <button class="level" data-level="Hard">Hard</button>
 </div>
 <section class="panel">
-<div class="stats"><span id="progress">Question 1 of 5</span><span>⭐ Score: <b id="score">0</b></span></div>
+<div class="stats">
+<span id="progress">Question 1 of 5</span>
+<span>⭐ Score: <b id="score">0</b></span>
+</div>
 <div class="bar"><div id="bar"></div></div>
 <div id="activity"></div>
-<div id="feedback" class="feedback hidden"></div>
+<div id="feedback" class="feedback hidden" aria-live="polite"></div>
 <button class="action hidden" id="next">Next question →</button>
 </section>
 <p class="foot">Made for curious little learners 💚</p>
 </main>
 <script>
-const games=[['🍎','Count Objects'],['➕','Addition'],['➖','Subtraction'],['🧸','Story Problems'],['🔢','Count Forward'],['⬇️','Count Backward'],['🦋','Skip Counting'],['🔎','Read Numbers'],['✏️','Write Numbers']];
-let game='Count Objects',level='Easy',q=0,score=0,problem={};
-const $=id=>document.getElementById(id),activity=$('activity');
+const games=[
+['🍎','Count Objects'],
+['➕','Addition'],
+['➖','Subtraction'],
+['🧸','Story Problems'],
+['🔢','Count Forward'],
+['⬇️','Count Backward'],
+['🦋','Skip Counting'],
+['🔎','Read Numbers'],
+['✏️','Write Numbers']
+];
+
+let game='Count Objects',level='Easy',q=0,score=0,answer=null,problem={};
+const $=id=>document.getElementById(id);
+const activity=$('activity');
+
+activity.addEventListener('click',e=>{
+if(game==='Read Numbers'){
+const b=e.target.closest('[data-value]');
+if(b&&!b.disabled)check(+b.dataset.value,true)
+}
+});
+
 function rand(n){return Math.floor(Math.random()*n)}
 function max(){return level==='Easy'?20:level==='Medium'?100:200}
+
 function words(n){
-const o=['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'],t=['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+const o=['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+const t=['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
 if(n<20)return o[n];
 if(n<100)return t[Math.floor(n/10)]+(n%10?'-'+o[n%10]:'');
-if(n===200)return 'two hundred';
+if(n===200)return'two hundred';
 return o[Math.floor(n/100)]+' hundred'+(n%100?' '+words(n%100):'');
 }
+
+function newProblem(){
+answer=null;
+$('feedback').classList.add('hidden');
+$('next').classList.add('hidden');
+$('progress').textContent=`Question ${q+1} of 5`;
+$('bar').style.width=(q/5*100)+'%';
+let m=max();
+
+if(game==='Count Objects'){
+let n=level==='Easy'?2+rand(7):level==='Medium'?8+rand(13):15+rand(16);
+problem={n,emoji:['🌸','🦋','🍎','🌼','🐞','🌷'][rand(6)]};
+renderObjects(false);
+
+}else if(game==='Subtraction'){
+let a=level==='Easy'?3+rand(7):level==='Medium'?10+rand(11):20+rand(21);
+let b=1+rand(Math.min(a-1,level==='Easy'?5:10));
+problem={a,b};
+renderSubtract();
+
+}else if(game==='Addition'||game==='Story Problems'){
+let a=level==='Easy'?rand(10)+1:rand(level==='Medium'?30:100)+1;
+let b=rand(level==='Easy'?8:level==='Medium'?20:50)+1;
+problem={a,b};
+let story=game==='Story Problems';
+problem.story=story;
+activity.innerHTML=`<div class="question">${story?`Nora has ${a} ${a===1?'apple':'apples'}. She gets ${b} more. How many apples now?`:`${a} + ${b} = ?`}</div><div class="hint">You can draw or count the groups together.</div>${choices(a+b)}`;
+
+}else if(game==='Read Numbers'){
+problem.n=rand(m+1);
+activity.innerHTML=`<div class="question">What number is <span style="color:#6b9655">${words(problem.n)}</span>?</div><div class="hint">Choose the matching digits.</div>${choices(problem.n)}`;
+
+}else if(game==='Write Numbers'){
+problem.n=rand(m+1);
+activity.innerHTML=`<div class="question">Write this number in digits:</div><div class="question" style="font-size:28px">${words(problem.n)}</div><input class="input" id="typed" inputmode="numeric" placeholder="Type the number" aria-label="Type the number"><button class="action" id="check">Check answer</button>`;
+$('check').onclick=()=>check(Number($('typed').value),$('typed').value.trim()!=='');
+
+}else{
+let step=game==='Skip Counting'?(level==='Easy'?2:level==='Medium'?5:10):1;
+let start=rand(15)+1;
+if(game==='Count Backward')start+=level==='Easy'?5:level==='Medium'?20:50;
+let direction=game==='Count Backward'?-1:1;
+problem={
+expected:start+direction*step*3,
+sequence:[start,start+direction*step,start+direction*step*2]
+};
+activity.innerHTML=`<div class="question">${game==='Count Backward'?'Count backward':'Count forward'}${game==='Skip Counting'?' by '+step+'s':''}</div><div class="question">${problem.sequence.join(', ')}, ___</div><input class="input" id="typed" inputmode="numeric" placeholder="What comes next?"><button class="action" id="check">Check answer</button>`;
+$('check').onclick=()=>check(Number($('typed').value),$('typed').value.trim()!=='');
+}
+}
+
 function choices(correct){
 let set=new Set([correct]);
-while(set.size<3){let d=rand(5)+1;set.add(Math.max(0,correct+(rand(2)?d:-d)))}
+while(set.size<3){
+let delta=rand(5)+1;
+set.add(Math.max(0,correct+(rand(2)?delta:-delta)));
+}
 return `<div class="choices">${[...set].sort(()=>Math.random()-.5).map(v=>`<button class="choice" data-value="${v}">${v}</button>`).join('')}</div>`;
 }
-function check(value){
-let correct=game==='Subtraction'?problem.a-problem.b:game==='Addition'||game==='Story Problems'?problem.a+problem.b:game==='Count Objects'||game==='Read Numbers'||game==='Write Numbers'?problem.n:problem.expected;
-let ok=value===correct;if(ok)score++;
-$('score').textContent=score;
-$('feedback').textContent=ok?'🌟 Wonderful! That is correct!':'🌱 Good try! The answer is '+correct+'. Let’s keep practicing!';
-$('feedback').classList.remove('hidden');$('next').classList.remove('hidden');
-$('next').textContent=q===4?'See my stars →':'Next question →';
-activity.querySelectorAll('button,input').forEach(b=>b.disabled=true);
-}
+
 function renderObjects(){
-activity.innerHTML=`<div class="question">How many do you see?</div><div class="hint">Touch each picture and count slowly!</div><div class="objects">${Array.from({length:problem.n},()=>`<span class="object">${problem.emoji}</span>`).join('')}</div>${choices(problem.n)}`;
+activity.innerHTML=`<div class="question">How many do you see?</div><div class="hint">Touch each picture and count slowly!</div><div class="objects">${Array.from({length:problem.n},(_,i)=>`<button class="object" aria-label="Object ${i+1}" data-object="${i}">${problem.emoji}</button>`).join('')}</div>${choices(problem.n)}`;
+activity.querySelectorAll('[data-value]').forEach(b=>b.onclick=()=>check(+b.dataset.value,true));
 }
+
 function renderSubtract(){
-activity.innerHTML=`<div class="question">${problem.a} − ${problem.b} = ?</div><div class="hint">Tap ${problem.b} apples to cross them out, then count what remains.</div><div class="objects">${Array.from({length:problem.a},(_,i)=>`<button class="object" data-apple="${i}">🍎</button>`).join('')}</div><p id="taken" class="hint">Apples taken away: 0 of ${problem.b}</p><button class="action" id="checkTake" disabled>Check remaining apples</button>`;
+activity.innerHTML=`<div class="question">${problem.a} − ${problem.b} = ?</div><div class="hint">Tap ${problem.b} apples to cross them out, then count what remains.</div><div class="objects">${Array.from({length:problem.a},(_,i)=>`<button class="object" data-apple="${i}">🍎</button>`).join('')}</div><div class="hint" id="taken">Apples taken away: 0 of ${problem.b}</div><button class="action" id="checkTake" disabled>Check remaining apples</button>`;
 let removed=new Set();
 activity.querySelectorAll('[data-apple]').forEach(b=>b.onclick=()=>{
 let i=+b.dataset.apple;
-if(removed.has(i))removed.delete(i);else if(removed.size<problem.b)removed.add(i);
-b.classList.toggle('crossed',removed.has(i));b.textContent=removed.has(i)?'❌':'🍎';
+if(removed.has(i))removed.delete(i);
+else if(removed.size<problem.b)removed.add(i);
+b.classList.toggle('crossed',removed.has(i));
+b.textContent=removed.has(i)?'❌':'🍎';
 $('taken').textContent=`Apples taken away: ${removed.size} of ${problem.b}`;
 $('checkTake').disabled=removed.size!==problem.b;
 });
 $('checkTake').onclick=()=>{
 activity.insertAdjacentHTML('beforeend',choices(problem.a-problem.b));
-activity.querySelectorAll('[data-value]').forEach(b=>b.onclick=()=>check(+b.dataset.value));
-$('checkTake').disabled=true;
+activity.querySelectorAll('[data-value]').forEach(b=>b.onclick=()=>check(+b.dataset.value,true));
 };
 }
-function newProblem(){
-$('feedback').classList.add('hidden');$('next').classList.add('hidden');
-$('progress').textContent=`Question ${q+1} of 5`;$('bar').style.width=(q/5*100)+'%';
-let m=max();
-if(game==='Count Objects'){
-problem={n:level==='Easy'?2+rand(7):level==='Medium'?8+rand(13):15+rand(16),emoji:['🌸','🦋','🍎','🌼','🐞','🌷'][rand(6)]};renderObjects();
-}else if(game==='Subtraction'){
-let a=level==='Easy'?3+rand(7):level==='Medium'?10+rand(11):20+rand(21),b=1+rand(Math.min(a-1,level==='Easy'?5:10));problem={a,b};renderSubtract();
-}else if(game==='Addition'||game==='Story Problems'){
-let a=rand(level==='Easy'?10:level==='Medium'?30:100)+1,b=rand(level==='Easy'?8:level==='Medium'?20:50)+1;problem={a,b};
-activity.innerHTML=`<div class="question">${game==='Story Problems'?`Nora has ${a} apples. She gets ${b} more. How many now?`:`${a} + ${b} = ?`}</div>${choices(a+b)}`;
-}else if(game==='Read Numbers'){
-problem.n=rand(m+1);activity.innerHTML=`<div class="question">What number is <span style="color:#6b9655">${words(problem.n)}</span>?</div><div class="hint">Choose the matching digits.</div>${choices(problem.n)}`;
-}else if(game==='Write Numbers'){
-problem.n=rand(m+1);activity.innerHTML=`<div class="question">Write this number in digits:</div><div class="question">${words(problem.n)}</div><input class="input" id="typed" inputmode="numeric" placeholder="Type the number"><button class="action" id="check">Check answer</button>`;
-$('check').onclick=()=>{if($('typed').value.trim()!=='')check(Number($('typed').value))};
-}else{
-let step=game==='Skip Counting'?(level==='Easy'?2:level==='Medium'?5:10):1;
-let start=rand(15)+1;if(game==='Count Backward')start+=level==='Easy'?5:level==='Medium'?20:50;
-problem={expected:game==='Count Backward'?start-step:start+step};
-activity.innerHTML=`<div class="question">${game==='Count Backward'?'Count backward':game==='Skip Counting'?'Skip counting by '+step+'s':'Count forward'}</div><div class="question">${start}, ${start+(game==='Count Backward'?-step:step)}, ___</div><input class="input" id="typed" inputmode="numeric" placeholder="What comes next?"><button class="action" id="check">Check answer</button>`;
-$('check').onclick=()=>{if($('typed').value.trim()!=='')check(Number($('typed').value))};
+
+function check(value,provided){
+if(!provided)return;
+let correct=game==='Subtraction'?problem.a-problem.b:
+game==='Addition'||game==='Story Problems'?problem.a+problem.b:
+game==='Count Objects'||game==='Read Numbers'||game==='Write Numbers'?problem.n:
+problem.expected;
+answer=value;
+let ok=value===correct;
+if(ok)score++;
+$('score').textContent=score;
+$('feedback').textContent=ok?'🌟 Wonderful! That is correct!':'🌱 Good try! The answer is '+correct+'. Let’s keep practicing!';
+$('feedback').classList.remove('hidden');
+$('next').classList.remove('hidden');
+$('next').textContent=q===4?'See my stars →':'Next question →';
+activity.querySelectorAll('button').forEach(b=>b.disabled=true);
 }
-activity.querySelectorAll('[data-value]').forEach(b=>b.onclick=()=>check(+b.dataset.value));
+
+function start(){
+q=0;
+score=0;
+$('score').textContent=0;
+newProblem();
 }
-function start(){q=0;score=0;$('score').textContent=0;newProblem()}
-function advance(){if(q===4){$('feedback').textContent=`🌷 Lovely work! You earned ${score} out of 5 stars. Choose another game or play again.`;$('next').textContent='Play again';$('next').onclick=start;return}q++;newProblem()}
+
+$('next').onclick=()=>{
+if(q===4){
+$('feedback').textContent=`🌷 Lovely work! You earned ${score} out of 5 stars. Choose another game or play this one again.`;
+$('next').textContent='Play another round';
+$('next').onclick=()=>{
 $('next').onclick=advance;
-function selectGame(name){game=name;document.querySelectorAll('.game').forEach(b=>b.classList.toggle('active',b.dataset.game===game));$('next').onclick=advance;start()}
-$('games').innerHTML=games.map(([e,n])=>`<button class="game ${n===game?'active':''}" data-game="${n}"><span>${e}</span>${n}</button>`).join('');
+start();
+};
+}else advance();
+};
+
+function advance(){
+q++;
+newProblem();
+}
+
+function selectGame(name){
+game=name;
+document.querySelectorAll('.game').forEach(b=>b.classList.toggle('active',b.dataset.game===game));
+start();
+}
+
+$('games').innerHTML=games.map(([emoji,name])=>`<button class="game ${name===game?'active':''}" data-game="${name}"><span>${emoji}</span>${name}</button>`).join('');
 $('games').querySelectorAll('button').forEach(b=>b.onclick=()=>selectGame(b.dataset.game));
-document.querySelectorAll('.level').forEach(b=>b.onclick=()=>{level=b.dataset.level;document.querySelectorAll('.level').forEach(x=>x.classList.toggle('active',x===b));$('next').onclick=advance;start()});
+
+document.querySelectorAll('.level').forEach(b=>b.onclick=()=>{
+level=b.dataset.level;
+document.querySelectorAll('.level').forEach(x=>x.classList.toggle('active',x===b));
+start();
+});
+
 start();
 </script>
 </body>
